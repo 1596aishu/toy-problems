@@ -1,0 +1,5 @@
+LRU cache works as of removing the least recently used page. 
+Here I used, a fixed size of cache, and as of the pages got added, the LRU page was deleted if it exceed the capacity of the cache.
+I faced problems for testing the code and linking the main code with test cases. 
+I faced a problem while storing the count of the number of times each page was occurring.
+Hence I removed an extra data structure that I used for that purpose.
