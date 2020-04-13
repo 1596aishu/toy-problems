@@ -1,30 +1,27 @@
-class LRUnode():
-    def __init__(self,key,value):
-        self.key = key
-        self.value = value
-
 
 class LRUcache():
     
-    def __init__(self, capacity: int):
-        self.cache = {}
+    def __init__(self, capacity):
         self.capacity = capacity
-        
+        self.cache = {}
 
-    def get(self, key: int):
+    def get(self, key):
         key = str(key)
         try:
             val = self.cache.pop(key)
         except:
             return -1
-        self.cache[key] = val        
+        self.cache[key] = val
         return val
-    
 
-    def put(self, key: int, value: int):
+    def put(self, key, value):
         key = str(key)
         self.cache.pop(key, None)
         if len(self.cache) >= self.capacity:
-            pop_this = next(iter(self.cache))
-            del self.cache[pop_this]
-        self.cache[key]=value
+            popitem = next(iter(self.cache))
+            print("LRU:", popitem)
+            del self.cache[popitem]
+        self.cache[key] = value
+
+    def get_cache(self):
+        print(self.cache)

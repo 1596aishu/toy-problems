@@ -3,21 +3,41 @@ from LRUcache import *
 from time import sleep
 
 
-def output(cache):
-    for i,data in enumerate(cache.storage):
-        print("index: {0} "
-              "key: {1} "
-              "data: {2} ".format(i,data.key,data.value))
-
 print("Initial items")
-cache = LRUCache(3)
-cache.put(LRUnode(1,'1'))
-cache.put(LRUnode(2,'2'))
-cache.put(LRUnode(3,'3'))
-output(cache)
+caches = LRUcache(3)
+caches.put(1,'one')
+caches.put(2,'two')
+caches.put(3,'three')
+caches.get_cache()
 print("\n")
 
 print("Insert an existing item")
-cache.put(LRUnode(1,'1'))
-output(cache)
+caches.put(1,'one')
+caches.get_cache()
+print("\n")
+
+print("Insert an existing item")
+caches.put(2,'two')
+caches.get_cache()
+print("\n")
+
+print("Insert an new item")
+caches.put(6,'six')
+caches.get_cache()
+print("\n")
+
+
+print("Insert an existing item")
+caches.put(2,'two_modified')
+caches.get_cache()
+print("\n")
+
+print("Insert an existing item")
+caches.put(1,'one_modified')
+caches.get_cache()
+print("\n")
+
+print("Insert an new item")
+caches.put(3,'three')
+caches.get_cache()
 print("\n")
