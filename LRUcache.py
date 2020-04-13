@@ -1,5 +1,3 @@
-from datetime import datetime
-
 class LRUnode():
     def __init__(self,key,value):
         self.key = key
@@ -8,32 +6,25 @@ class LRUnode():
 
 class LRUcache():
     
-    def __init__(self, capacity):
-        self.capacity = capacity
+    def __init__(self, capacity: int):
         self.cache = {}
-        self.storage = []
+        self.capacity = capacity
         
 
-    def get(self, key):
-        if key in self.cache:
-            self.storage.remove(key)
-            self.storage.append(key)
-            return self.cache[key]
-        else:
+    def get(self, key: int):
+        key = str(key)
+        try:
+            val = self.cache.pop(key)
+        except:
             return -1
-        
+        self.cache[key] = val        
+        return val
+    
 
-    def put(self, key, value):
-        if key in self.cache:
-            self.storage.remove(key)
-            self.storage.append(key)
-            self.cache[key] = value
-        else:
-            if len(self.storage) < self.capacity:
-                self.storage.append(key)
-                self.cache[key] = value
-            else:
-                del self.cache[self.storage[0]]
-                self.storage.pop(0)
-                self.cache[key] = value
-                self.storage.append(key)
+    def put(self, key: int, value: int):
+        key = str(key)
+        self.cache.pop(key, None)
+        if len(self.cache) >= self.capacity:
+            pop_this = next(iter(self.cache))
+            del self.cache[pop_this]
+        self.cache[key]=value
